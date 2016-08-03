@@ -1,7 +1,7 @@
 # SWII
 softwareII II 2014
 <table>
-<th><td>Integrantes</td></th>
+<tr><th>Integrantes</th></tr>
 <tr>
   <td>Natalia Moreno Lopera</td>
 </tr>
