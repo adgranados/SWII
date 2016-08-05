@@ -8,6 +8,7 @@ package co.edu.unbosque;
 
 import co.edu.unbosque.marte.ControladorArchivo;
 import java.io.FileNotFoundException;
+import org.junit.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -18,16 +19,18 @@ public class TestControlArchivo {
     
     @Test
     public void elArchivoExiste() throws FileNotFoundException{
-        ControladorArchivo c=new ControladorArchivo("d:/juego.txt");        
+        ControladorArchivo c=new ControladorArchivo("/home/f209/Documentos/juego.txt");        
     }
 
 	@Test
 	public void leerMundo()throws FileNotFoundException{
-			ControladorArchivo c=new ControladorArchivo("d:/juego.txt");
+			ControladorArchivo c=new ControladorArchivo("/home/f209/Documentos/juego.txt");
 			Integer filas, columnas;
-			filas = columnas = 0;
-			c.leerMundo(Integer filas, Integer columnas);
-
+			c.leerMundo();
+                        filas = c.getFilas();
+                        columnas = c.getColumnas();
+                        Assert.assertTrue(filas.equals(5));
+                        Assert.assertTrue(columnas.equals(5));
 			System.out.println(filas);
 			System.out.println(columnas);
 	}

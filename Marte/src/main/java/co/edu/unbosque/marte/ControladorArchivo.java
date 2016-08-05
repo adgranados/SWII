@@ -25,5 +25,21 @@ public class ControladorArchivo {
         FileInputStream fin=new FileInputStream(f);
         br=new BufferedReader(new InputStreamReader(fin));
     }
+
+
+
+    public void leerMundo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Integer getFilas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Integer getColumnas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }
