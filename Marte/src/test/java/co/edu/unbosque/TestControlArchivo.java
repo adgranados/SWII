@@ -20,4 +20,15 @@ public class TestControlArchivo {
     public void elArchivoExiste() throws FileNotFoundException{
         ControladorArchivo c=new ControladorArchivo("d:/juego.txt");        
     }
+
+	@Test
+	public void leerMundo()throws FileNotFoundException{
+			ControladorArchivo c=new ControladorArchivo("d:/juego.txt");
+			Integer filas, columnas;
+			filas = columnas = 0;
+			c.leerMundo(Integer filas, Integer columnas);
+
+			System.out.println(filas);
+			System.out.println(columnas);
+	}
 }
