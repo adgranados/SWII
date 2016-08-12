@@ -7,8 +7,8 @@
 package co.edu.unbosque;
 
 
-import co.edu.unbosque.marte.ExporacionMarte;
-import co.edu.unbosque.marte.Explorador;
+import co.edu.unbosque.marte.ExploracionMarte;
+import co.edu.unbosque.marte.IExplorador;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.Assert;
@@ -20,9 +20,10 @@ import org.testng.annotations.Test;
  */
 public class TestControlArchivo {
     
+    
     @Test
     public void elArchivoExiste() throws FileNotFoundException{
-        ExporacionMarte exploracionMarte=new ExporacionMarte("D:\\test\\config.txt");        
+        ExploracionMarte exploracionMarte=ExploracionMarte.getInstancia();        
     }
     /**
      * El metodo prueba que el tamaño de Marte se haya cargodo correctamente.
@@ -30,26 +31,26 @@ public class TestControlArchivo {
      * @throws IOException 
      */
 	@Test
-	public void testTamanoMarte()throws FileNotFoundException, IOException{
-			ExporacionMarte exploracionMarte=new ExporacionMarte("D:\\test\\config.txt");
+	public void testCargaTamanoCorrectoMarte()throws FileNotFoundException, IOException{
+			ExploracionMarte exploracionMarte=ExploracionMarte.getInstancia(); 
 			Integer filas, columnas;
 			exploracionMarte.leerMundo();
-                        filas = exploracionMarte.getFilas();
+                         filas = exploracionMarte.getFilas();
                         columnas = exploracionMarte.getColumnas();
                         Assert.assertTrue(filas.equals(5));
                         Assert.assertTrue(columnas.equals(5));
 	}
         /**
-     * El metodo prueba que el tamaño de Marte se haya cargodo correctamente.
+     * El metodo prueba que la carga del primer explorador sea correcta
      * @throws FileNotFoundException
      * @throws IOException 
      */
 	@Test
-	public void testCargaExplorador()throws FileNotFoundException, IOException{
-			ExporacionMarte exploracionMarte=new ExporacionMarte("D:\\test\\config.txt");
+	public void testCargaCorrectaPrimerExploradorDesdeArchivo()throws FileNotFoundException, IOException{
+			ExploracionMarte exploracionMarte=ExploracionMarte.getInstancia(); 
 			Integer filas, columnas;
 			exploracionMarte.leerMundo();
-                        Explorador explorador1 = exploracionMarte.getExplorador(1);
+                        IExplorador explorador1 = exploracionMarte.getExplorador(1);
                         Assert.assertTrue(explorador1.getXPos()==1);
                         Assert.assertTrue(explorador1.getYPos()==2);
                         Assert.assertTrue(explorador1.getDireccion().equals("N"));

@@ -14,23 +14,39 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author F211
  */
-public class ExporacionMarte {
-
+public class ExploracionMarte {
+    private static final  String PATH = "/home/f209/Documentos/marte.txt";
+    private static ExploracionMarte instancia = null;
+    public static ExploracionMarte getInstancia(){
+        if(instancia == null){
+            try {
+                    instancia = new ExploracionMarte(PATH);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ExploracionMarte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return instancia;
+    }
+    
+    
     BufferedReader br;
     private int filas;
     private int columnas;
-    private ArrayList<Explorador> exploradores;
-    public ExporacionMarte(String djuegotxt) throws FileNotFoundException {
+    private ArrayList<IExplorador> exploradores;
+    
+    private ExploracionMarte(String djuegotxt) throws FileNotFoundException {
         File f=new File(djuegotxt);
         FileInputStream fin=new FileInputStream(f);
         br=new BufferedReader(new InputStreamReader(fin));
         
-        this.exploradores = new ArrayList<Explorador>();
+        this.exploradores = new ArrayList<IExplorador>();
     }
 
 
@@ -56,11 +72,7 @@ public class ExporacionMarte {
                     String direccion = posicionExplorador[2];
                     String desplazamiento = br.readLine();
                     linePos++;
-                    Explorador explorador = new Explorador();
-                    explorador.setXPos(x);
-                    explorador.setYPos(y);
-                    explorador.setDireccion(direccion);
-                    explorador.setDesplazamiento(desplazamiento);
+                    IExplorador explorador = FactoryExplorador.getExplorador(x,y,direccion,desplazamiento);
                     this.exploradores.add(explorador);
                 }
             }
@@ -84,7 +96,7 @@ public class ExporacionMarte {
         this.columnas = columnas;
     }
 
-    public Explorador getExplorador(int i) {
+    public IExplorador getExplorador(int i) {
         return this.exploradores.get(i-1);
     }
 
