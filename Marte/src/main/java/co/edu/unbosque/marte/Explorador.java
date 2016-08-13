@@ -34,61 +34,83 @@ public class Explorador implements IExplorador {
         for (char accion : movimientos) {
             switch (accion) {
                 case ACCION_GIRAR_IZQUIERDA:
-                    switch (this.getDireccion()) {
-                        case DIRECCION_NORTE:
-                            this.setDireccion(DIRECCION_ESTE);
-                            break;
-                        case DIRECCION_SUR:
-                            this.setDireccion(DIRECCION_OESTE);
-                            break;
-                        case DIRECCION_ESTE:
-                            this.setDireccion(DIRECCION_SUR);
-                            break;
-                        case DIRECCION_OESTE:
-                            this.setDireccion(DIRECCION_NORTE);
-                            break;
-                    }
+                    girarIzquierda();
                     break;
                 case ACCION_GIRAR_DERECHA:
-
-                    switch (this.getDireccion()) {
-                        case DIRECCION_NORTE:
-                            this.setDireccion(DIRECCION_OESTE);
-                            break;
-                        case DIRECCION_SUR:
-                            this.setDireccion(DIRECCION_ESTE);
-                            break;
-                        case DIRECCION_ESTE:
-                            this.setDireccion(DIRECCION_NORTE);
-                            break;
-                        case DIRECCION_OESTE:
-                            this.setDireccion(DIRECCION_SUR);
-                            break;
-                    }
+                    girarDerecha();
                     break;
                 case ACCION_AVANZA:
-                    switch (this.getDireccion()) {
-                        case DIRECCION_NORTE:
-                            // @todo: validar si no sobrepasa el tamaño de marte
-                            this.setYPos(this.getYPos() + 1);
-                            break;
-                        case DIRECCION_SUR:
-                            // @todo: validar si no sobrepasa el tamaño de marte
-                            this.setYPos(this.getYPos() - 1);
-                            break;
-                        case DIRECCION_ESTE:
-                            // @todo: validar si no sobrepasa el tamaño de marte
-                            this.setXPos(this.getXPos() - 1);
-                            break;
-                        case DIRECCION_OESTE:
-                            // @todo: validar si no sobrepasa el tamaño de marte
-                            this.setXPos(this.getXPos() + 1);
-                            break;
-                    }
+                    avanzar();
                     break;
                 default:
                     break;
             }
+        }
+    }
+
+    /**
+     * Metodo que corresponde a realizar un movimiento hacia adelante
+     * manteniendo la misma dirección en la que actualmente se encuentra.
+     */
+    public void avanzar() {
+        switch (this.getDireccion()) {
+            case DIRECCION_NORTE:
+                // @todo: validar si no sobrepasa el tamaño de marte
+                this.setYPos(this.getYPos() + 1);
+                break;
+            case DIRECCION_SUR:
+                // @todo: validar si no sobrepasa el tamaño de marte
+                this.setYPos(this.getYPos() - 1);
+                break;
+            case DIRECCION_ESTE:
+                // @todo: validar si no sobrepasa el tamaño de marte
+                this.setXPos(this.getXPos() - 1);
+                break;
+            case DIRECCION_OESTE:
+                // @todo: validar si no sobrepasa el tamaño de marte
+                this.setXPos(this.getXPos() + 1);
+                break;
+        }
+    }
+
+    /**
+     *Metodo que corresponde a girar 90 grados a la Derecha sin moverse del punto en la grilla en la que se encuentra
+     */
+    public void girarDerecha() {
+        switch (this.getDireccion()) {
+            case DIRECCION_NORTE:
+                this.setDireccion(DIRECCION_OESTE);
+                break;
+            case DIRECCION_SUR:
+                this.setDireccion(DIRECCION_ESTE);
+                break;
+            case DIRECCION_ESTE:
+                this.setDireccion(DIRECCION_NORTE);
+                break;
+            case DIRECCION_OESTE:
+                this.setDireccion(DIRECCION_SUR);
+                break;
+        }
+    }
+
+    /**
+     * Metodo que corresponde a girar 90 grados a la Izquierda sin moverse del
+     * punto en la grilla en la que se encuentra
+     */
+    public void girarIzquierda() {
+        switch (this.getDireccion()) {
+            case DIRECCION_NORTE:
+                this.setDireccion(DIRECCION_ESTE);
+                break;
+            case DIRECCION_SUR:
+                this.setDireccion(DIRECCION_OESTE);
+                break;
+            case DIRECCION_ESTE:
+                this.setDireccion(DIRECCION_SUR);
+                break;
+            case DIRECCION_OESTE:
+                this.setDireccion(DIRECCION_NORTE);
+                break;
         }
     }
 
