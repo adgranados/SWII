@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author F211
  */
 public class ExploracionMarte {
-    private static final  String PATH = "/home/f209/Documentos/marte.txt";
+    private static final  String PATH = "/home/e205/Documentos/marte.txt";
     private static ExploracionMarte instancia = null;
     public static ExploracionMarte getInstancia(){
         if(instancia == null){
